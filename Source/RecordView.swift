@@ -100,19 +100,10 @@ public class RecordView: UIView, CAAnimationDelegate {
 
     @objc func cancelButtonTouched() {
         isSwiped = false
-        
         audioPlayer.didFinishPlaying = nil
-        
-        //animateRecordButtonToIdentity(recordButton)
-        
         hideCancelStackViewAndTimeLabel()
-        
         bucketImageView.animateBucketAndMic()
-//        bucketImageView.isHidden = true
-//        delegate?.onAnimationEnd?()
-        
         resetTimer()
-        
         delegate?.onCancel()
         cancelButton.isHidden = true;
     }
