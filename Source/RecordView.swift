@@ -350,17 +350,13 @@ public class RecordView: UIView, CAAnimationDelegate {
                 let transform = mTransform.translatedBy(x: 0, y: translation.y * 2 )
                 button.transform = transform
                 
-                //button.frame.minY
-//                print("lock.frame.maxY: ", )
-//                print("button.frame.minY: ", recordButton.frame.minY)
                 if self.convert(lock.frame, to: button.superview).maxY - 18 > button.frame.minY {
-//                    UIView.animate(withDuration: 0.3, delay: 0, options: .curveLinear, animations: {
-//                        button.transform = .identity
-//                    })
                     if cancelButton.superview == nil {
                         superview!.addSubview(cancelButton)
-                        cancelButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-                        cancelButton.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+                        NSLayoutConstraint.activate([cancelButton.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: timerStackView.bounds.width / 2)
+                                                     ,cancelButton.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+                        ]);
+                        
                         superview?.bringSubviewToFront(cancelButton)
                         cancelButton.addTarget(self, action: #selector(cancelButtonTouched), for: .touchUpInside)
                     }
