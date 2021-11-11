@@ -7,30 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		33FDA9F5E20AAED26D340EE8 /* Pods_iRecordView_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 964603F16F349B439DA5E54F /* Pods_iRecordView_Example.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		A859A257230D848F001C85F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A859A256230D848F001C85F0 /* Assets.xcassets */; };
 		A859A2B6230DDFAA001C85F0 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A859A2B5230DDFAA001C85F0 /* Extensions.swift */; };
+		BB6B52A7ADAC0527E6471638 /* Pods_iRecordView_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E959AA20D265EE001DBF3D7E /* Pods_iRecordView_Example.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0A71C42F920509D71D843243 /* Pods-iRecordView_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iRecordView_Example.release.xcconfig"; path = "Target Support Files/Pods-iRecordView_Example/Pods-iRecordView_Example.release.xcconfig"; sourceTree = "<group>"; };
+		468ABBAA5688BBC5B91DC265 /* Pods-iRecordView_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iRecordView_Example.debug.xcconfig"; path = "Target Support Files/Pods-iRecordView_Example/Pods-iRecordView_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* iRecordView_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iRecordView_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		607FACD71AFB9204008FA782 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		8882A32FBAD3A489360B5017 /* Pods-iRecordView_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iRecordView_Tests.debug.xcconfig"; path = "Target Support Files/Pods-iRecordView_Tests/Pods-iRecordView_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		964603F16F349B439DA5E54F /* Pods_iRecordView_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iRecordView_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A859A256230D848F001C85F0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A859A2B5230DDFAA001C85F0 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		B14B37995972D7D68255AE21 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		CB8C5C6532B55D116939A682 /* iRecordView.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = iRecordView.podspec; path = ../iRecordView.podspec; sourceTree = "<group>"; };
-		D91CF2776E4EDB9A899F833E /* Pods-iRecordView_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iRecordView_Example.debug.xcconfig"; path = "Target Support Files/Pods-iRecordView_Example/Pods-iRecordView_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		EC4016D3EC677AF45A6DA045 /* Pods-iRecordView_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iRecordView_Tests.release.xcconfig"; path = "Target Support Files/Pods-iRecordView_Tests/Pods-iRecordView_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		E959AA20D265EE001DBF3D7E /* Pods_iRecordView_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iRecordView_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCF3E23550B7946BAD4CB5FA /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		FDAAC20CF3BA5AD905BEC6BC /* Pods-iRecordView_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iRecordView_Example.release.xcconfig"; path = "Target Support Files/Pods-iRecordView_Example/Pods-iRecordView_Example.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,21 +36,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				33FDA9F5E20AAED26D340EE8 /* Pods_iRecordView_Example.framework in Frameworks */,
+				BB6B52A7ADAC0527E6471638 /* Pods_iRecordView_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3D7BBB2F0E3198ECFC1F77E0 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				964603F16F349B439DA5E54F /* Pods_iRecordView_Example.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
@@ -60,7 +50,7 @@
 				607FACD21AFB9204008FA782 /* Demo */,
 				607FACD11AFB9204008FA782 /* Products */,
 				672D4ECD667B594D5FCE8BF0 /* Pods */,
-				3D7BBB2F0E3198ECFC1F77E0 /* Frameworks */,
+				CAAF1E99E5F20B00F92BEAF6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -107,12 +97,18 @@
 		672D4ECD667B594D5FCE8BF0 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				D91CF2776E4EDB9A899F833E /* Pods-iRecordView_Example.debug.xcconfig */,
-				0A71C42F920509D71D843243 /* Pods-iRecordView_Example.release.xcconfig */,
-				8882A32FBAD3A489360B5017 /* Pods-iRecordView_Tests.debug.xcconfig */,
-				EC4016D3EC677AF45A6DA045 /* Pods-iRecordView_Tests.release.xcconfig */,
+				468ABBAA5688BBC5B91DC265 /* Pods-iRecordView_Example.debug.xcconfig */,
+				FDAAC20CF3BA5AD905BEC6BC /* Pods-iRecordView_Example.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		CAAF1E99E5F20B00F92BEAF6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E959AA20D265EE001DBF3D7E /* Pods_iRecordView_Example.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -122,11 +118,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "iRecordView_Example" */;
 			buildPhases = (
-				82CA69E5298F87931F65D65D /* [CP] Check Pods Manifest.lock */,
+				AD94242C40ACFFB48AABF1AD /* [CP] Check Pods Manifest.lock */,
 				607FACCC1AFB9204008FA782 /* Sources */,
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
-				49A0DB2BCC54AB7B962F77A6 /* [CP] Embed Pods Frameworks */,
+				74E087E9DC7BE46B5D0B5702 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -186,20 +182,16 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		49A0DB2BCC54AB7B962F77A6 /* [CP] Embed Pods Frameworks */ = {
+		74E087E9DC7BE46B5D0B5702 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-iRecordView_Example/Pods-iRecordView_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/iRecordView/iRecordView.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/iRecordView.framework",
 			);
@@ -208,7 +200,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iRecordView_Example/Pods-iRecordView_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		82CA69E5298F87931F65D65D /* [CP] Check Pods Manifest.lock */ = {
+		AD94242C40ACFFB48AABF1AD /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -360,7 +352,7 @@
 		};
 		607FACF01AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D91CF2776E4EDB9A899F833E /* Pods-iRecordView_Example.debug.xcconfig */;
+			baseConfigurationReference = 468ABBAA5688BBC5B91DC265 /* Pods-iRecordView_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 686JPTL363;
@@ -377,7 +369,7 @@
 		};
 		607FACF11AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0A71C42F920509D71D843243 /* Pods-iRecordView_Example.release.xcconfig */;
+			baseConfigurationReference = FDAAC20CF3BA5AD905BEC6BC /* Pods-iRecordView_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 686JPTL363;
