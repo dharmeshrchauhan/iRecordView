@@ -12,6 +12,7 @@ public class RecordView: UIView, CAAnimationDelegate {
 
     private var isSwiped = false
     private var bucketImageView: BucketImageView!
+    private var lockImageView: BucketImageView!
 
     private var timer: Timer?
     private var duration: CGFloat = 0
@@ -64,6 +65,17 @@ public class RecordView: UIView, CAAnimationDelegate {
         arrowView.tintColor = .black
         return arrowView
     }()
+    
+    private let lock: UIImageView = {
+        let lockView = UIImageView()
+        //lockView.image = UIImage.fromPod("mic_red")
+        lockView.translatesAutoresizingMaskIntoConstraints = false
+        lockView.tintColor = .black
+        lockView.backgroundColor = UIColor.blue
+        NSLayoutConstraint.activate([lockView.widthAnchor.constraint(equalToConstant: 35),
+                                     lockView.heightAnchor.constraint(equalToConstant: 35)]);
+        return lockView
+    }()
 
     private let slideLabel: UILabel = {
         let slide = UILabel()
@@ -98,10 +110,16 @@ public class RecordView: UIView, CAAnimationDelegate {
         slideToCancelStackVIew = UIStackView(arrangedSubviews: [arrow, slideLabel])
         slideToCancelStackVIew.translatesAutoresizingMaskIntoConstraints = false
         slideToCancelStackVIew.isHidden = true
+        
+        
 
 
         addSubview(timerStackView)
         addSubview(slideToCancelStackVIew)
+        addSubview(lock)
+        lock.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 55).isActive = true
+        lock.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -100).isActive = true
+
 
 
         arrow.widthAnchor.constraint(equalToConstant: 15).isActive = true
@@ -295,7 +313,68 @@ public class RecordView: UIView, CAAnimationDelegate {
         case .changed:
 
             //prevent swiping the button outside the bounds
-            if translation.x < 0 {
+            if translation.y < 0 {
+                //start move the views
+                let transform = mTransform.translatedBy(x: 0, y: translation.y * 2 )
+                button.transform = transform
+                
+                //button.frame.minY
+//                print("lock.frame.maxY: ", )
+//                print("button.frame.minY: ", recordButton.frame.minY)
+                if self.convert(lock.frame, to: button.superview).maxY - 18 > button.frame.minY {
+                    
+                    if (lock.backgroundColor == UIColor.red)
+                    {
+                        lock.backgroundColor = UIColor.blue
+                        
+                        isSwiped = true
+                        audioPlayer.didFinishPlaying = nil
+    
+                        animateRecordButtonToIdentity(recordButton)
+    
+                        hideCancelStackViewAndTimeLabel()
+    
+                        if !isLessThanOneSecond() {
+                            bucketImageView.animateBucketAndMic()
+    
+                        } else {
+                            bucketImageView.isHidden = true
+                            delegate?.onAnimationEnd?()
+                        }
+    
+                        resetTimer()
+    
+                        delegate?.onCancel()
+                    }
+                    else {
+                        lock.backgroundColor = UIColor.red
+                        isSwiped = true
+                        animateRecordButtonToIdentity(recordButton)
+                    }
+                    
+                    
+                    isSwiped = true
+//                    audioPlayer.didFinishPlaying = nil
+//
+                    animateRecordButtonToIdentity(recordButton)
+//
+//                    hideCancelStackViewAndTimeLabel()
+//
+//                    if !isLessThanOneSecond() {
+//                        bucketImageView.animateBucketAndMic()
+//
+//                    } else {
+//                        bucketImageView.isHidden = true
+//                        delegate?.onAnimationEnd?()
+//                    }
+//
+//                    resetTimer()
+//
+//                    delegate?.onCancel()
+                }
+
+            }
+            else if translation.x < -5 {
                 //start move the views
                 let transform = mTransform.translatedBy(x: translation.x, y: 0)
                 button.transform = transform
