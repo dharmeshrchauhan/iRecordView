@@ -84,6 +84,37 @@ public class RecordView: UIView, CAAnimationDelegate {
         slide.font = slide.font.withSize(12)
         return slide
     }()
+    
+    private let cancelButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Cancel", for: .normal)
+        button.setTitleColor(UIColor.blue, for: .normal)
+        //button.tintColor = UIColor.blue
+        button.translatesAutoresizingMaskIntoConstraints = false
+        //slide.text = "Slide To Cancel"
+        //slide.translatesAutoresizingMaskIntoConstraints = false
+        button.titleLabel?.font = button.titleLabel!.font.withSize(15)
+        button.isHidden = true
+        return button
+    }()
+
+    @objc func cancelButtonTouched() {
+        isSwiped = false
+        
+        audioPlayer.didFinishPlaying = nil
+        
+        //animateRecordButtonToIdentity(recordButton)
+        
+        hideCancelStackViewAndTimeLabel()
+        
+        bucketImageView.isHidden = true
+        delegate?.onAnimationEnd?()
+        
+        resetTimer()
+        
+        delegate?.onCancel()
+        cancelButton.isHidden = true;
+    }
 
     private var timerLabel: UILabel = {
         let label = UILabel()
@@ -106,17 +137,14 @@ public class RecordView: UIView, CAAnimationDelegate {
         timerStackView.isHidden = true
         timerStackView.spacing = 5
 
-
         slideToCancelStackVIew = UIStackView(arrangedSubviews: [arrow, slideLabel])
         slideToCancelStackVIew.translatesAutoresizingMaskIntoConstraints = false
         slideToCancelStackVIew.isHidden = true
         
-        
-
-
         addSubview(timerStackView)
         addSubview(slideToCancelStackVIew)
         addSubview(lock)
+        
         lock.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 55).isActive = true
         lock.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -100).isActive = true
 
@@ -127,8 +155,7 @@ public class RecordView: UIView, CAAnimationDelegate {
 
         slideToCancelStackVIew.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         slideToCancelStackVIew.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-
-
+        
         timerStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         timerStackView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
 
@@ -145,14 +172,18 @@ public class RecordView: UIView, CAAnimationDelegate {
 
 
     func onTouchDown(recordButton: RecordButton) {
-        onStart(recordButton: recordButton)
+        if cancelButton.isHidden {
+            onStart(recordButton: recordButton)
+        }
     }
 
     func onTouchUp(recordButton: RecordButton) {
-        guard !isSwiped else {
-            return
+        if cancelButton.isHidden {
+            guard !isSwiped else {
+                return
+            }
+            onFinish(recordButton: recordButton)
         }
-        onFinish(recordButton: recordButton)
     }
     
     func onTouchCancelled(recordButton: RecordButton) {
@@ -322,57 +353,21 @@ public class RecordView: UIView, CAAnimationDelegate {
 //                print("lock.frame.maxY: ", )
 //                print("button.frame.minY: ", recordButton.frame.minY)
                 if self.convert(lock.frame, to: button.superview).maxY - 18 > button.frame.minY {
-                    
-                    if (lock.backgroundColor == UIColor.red)
-                    {
-                        lock.backgroundColor = UIColor.blue
-                        
-                        isSwiped = true
-                        audioPlayer.didFinishPlaying = nil
-    
-                        animateRecordButtonToIdentity(recordButton)
-    
-                        hideCancelStackViewAndTimeLabel()
-    
-                        if !isLessThanOneSecond() {
-                            bucketImageView.animateBucketAndMic()
-    
-                        } else {
-                            bucketImageView.isHidden = true
-                            delegate?.onAnimationEnd?()
-                        }
-    
-                        resetTimer()
-    
-                        delegate?.onCancel()
-                    }
-                    else {
-                        lock.backgroundColor = UIColor.red
-                        isSwiped = true
-                        animateRecordButtonToIdentity(recordButton)
+//                    UIView.animate(withDuration: 0.3, delay: 0, options: .curveLinear, animations: {
+//                        button.transform = .identity
+//                    })
+                    if cancelButton.superview == nil {
+                        superview!.addSubview(cancelButton)
+                        cancelButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+                        cancelButton.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+                        superview?.bringSubviewToFront(cancelButton)
+                        cancelButton.addTarget(self, action: #selector(cancelButtonTouched), for: .touchUpInside)
                     }
                     
-                    
-                    isSwiped = true
-//                    audioPlayer.didFinishPlaying = nil
-//
-                    animateRecordButtonToIdentity(recordButton)
-//
-//                    hideCancelStackViewAndTimeLabel()
-//
-//                    if !isLessThanOneSecond() {
-//                        bucketImageView.animateBucketAndMic()
-//
-//                    } else {
-//                        bucketImageView.isHidden = true
-//                        delegate?.onAnimationEnd?()
-//                    }
-//
-//                    resetTimer()
-//
-//                    delegate?.onCancel()
+                    button.transform = .identity
+                    slideToCancelStackVIew.isHidden = true
+                    cancelButton.isHidden = false
                 }
-
             }
             else if translation.x < -5 {
                 //start move the views
