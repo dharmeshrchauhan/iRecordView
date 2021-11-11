@@ -1,5 +1,5 @@
 PODS:
-  - iRecordView (0.1.0)
+  - iRecordView (0.1.4)
 
 DEPENDENCIES:
   - iRecordView (from `../`)
@@ -9,8 +9,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  iRecordView: b48f8be7411d16d06e304ceb71b1c8de01d7b1c0
+  iRecordView: 83aa080ce0c64db443a5f3969e441a7f12f9b8b5
 
-PODFILE CHECKSUM: d654beee31d17ff93cc2d7924bd3bcb112d2946a
+PODFILE CHECKSUM: 74a6cad78a6374c0c2e3812b0eb5aa413025c240
 
-COCOAPODS: 1.6.2
+COCOAPODS: 1.10.2
