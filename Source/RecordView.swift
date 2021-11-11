@@ -107,8 +107,9 @@ public class RecordView: UIView, CAAnimationDelegate {
         
         hideCancelStackViewAndTimeLabel()
         
-        bucketImageView.isHidden = true
-        delegate?.onAnimationEnd?()
+        bucketImageView.animateBucketAndMic()
+//        bucketImageView.isHidden = true
+//        delegate?.onAnimationEnd?()
         
         resetTimer()
         
