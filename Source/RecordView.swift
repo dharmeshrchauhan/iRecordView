@@ -328,6 +328,10 @@ public class RecordView: UIView, CAAnimationDelegate {
         guard !isSwiped else {
             return
         }
+        
+        guard cancelButton.isHidden else {
+            return
+        }
 
         let button = sender.view!
         let translation = sender.translation(in: button)
@@ -341,7 +345,8 @@ public class RecordView: UIView, CAAnimationDelegate {
                 let transform = mTransform.translatedBy(x: 0, y: translation.y * 2 )
                 button.transform = transform
                 
-                if self.convert(lock.frame, to: button.superview).maxY - 18 > button.frame.minY {
+                if cancelButton.isHidden && self.convert(lock.frame, to: button.superview).maxY - 18 > button.frame.minY {
+                    cancelButton.isHidden = false
                     if cancelButton.superview == nil {
                         superview!.addSubview(cancelButton)
                         NSLayoutConstraint.activate([cancelButton.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: timerStackView.bounds.width / 2)
@@ -354,7 +359,7 @@ public class RecordView: UIView, CAAnimationDelegate {
                     
                     button.transform = .identity
                     slideToCancelStackVIew.isHidden = true
-                    cancelButton.isHidden = false
+                    delegate?.onLock()
                 }
             }
             else if translation.x < -5 {
