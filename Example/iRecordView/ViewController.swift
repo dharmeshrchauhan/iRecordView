@@ -21,6 +21,11 @@ class ViewController: UIViewController,RecordViewDelegate {
         print("onCancel")
     }
     
+    func onLock() {
+        stateLabel.text = "onLock"
+        print("onLock")
+    }
+    
     func onFinished(duration: CGFloat) {
         stateLabel.text = "onFinished duration: \(duration)"
         print("onFinished \(duration)")

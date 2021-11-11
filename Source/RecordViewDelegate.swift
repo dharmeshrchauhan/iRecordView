@@ -11,6 +11,7 @@ import UIKit
 @objc public protocol RecordViewDelegate {
     func onStart()
     func onCancel()
+    func onLock()
     func onFinished(duration: CGFloat)
     @objc optional func onAnimationEnd()
 
