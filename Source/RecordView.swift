@@ -12,7 +12,6 @@ public class RecordView: UIView, CAAnimationDelegate {
 
     private var isSwiped = false
     private var bucketImageView: BucketImageView!
-    private var lockImageView: BucketImageView!
 
     private var timer: Timer?
     private var duration: CGFloat = 0
