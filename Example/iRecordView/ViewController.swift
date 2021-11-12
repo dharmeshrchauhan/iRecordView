@@ -56,7 +56,7 @@ class ViewController: UIViewController,RecordViewDelegate {
         recordButton = RecordButton()
         recordButton.translatesAutoresizingMaskIntoConstraints = false
         
-        let recordView = RecordView()
+        recordView = RecordView()
         recordView.translatesAutoresizingMaskIntoConstraints = false
 
         view.addSubview(recordButton)
@@ -93,9 +93,8 @@ class ViewController: UIViewController,RecordViewDelegate {
         sendButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8).isActive = true
         sendButton.bottomAnchor.constraint(equalTo: view.safeBottomAnchor, constant: -16).isActive = true
         sendButton.isHidden = true
+        sendButton.addTarget(self, action: #selector(sendMessage), for: UIControl.Event.touchUpInside)
 
-
-        
         stateLabel = UILabel()
         stateLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(stateLabel)
@@ -104,6 +103,11 @@ class ViewController: UIViewController,RecordViewDelegate {
         
         
         
+    }
+    
+    @objc
+    func sendMessage() {
+        recordView.finishRecording(recordButton: recordButton)
     }
 
 }

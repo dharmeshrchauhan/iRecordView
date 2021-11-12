@@ -311,6 +311,7 @@ public class RecordView: UIView, CAAnimationDelegate {
         timerStackView.isHidden = true
 
         timerLabel.isHidden = true
+        cancelButton.isHidden = true
 
 
         if isLessThanOneSecond() {
@@ -395,6 +396,10 @@ public class RecordView: UIView, CAAnimationDelegate {
             break
         }
 
+    }
+    
+    public func finishRecording(recordButton: RecordButton) {
+        onFinish(recordButton: recordButton)
     }
 
 }
