@@ -70,8 +70,9 @@ public class RecordView: UIView, CAAnimationDelegate {
         let lockView = UIImageView()
         //lockView.image = UIImage.fromPod("mic_red")
         lockView.translatesAutoresizingMaskIntoConstraints = false
-        lockView.tintColor = .black
-        lockView.backgroundColor = UIColor.blue
+        lockView.tintColor = .blue
+        lockView.image = UIImage.fromPod("lock")
+        //lockView.backgroundColor = UIColor.blue
         NSLayoutConstraint.activate([lockView.widthAnchor.constraint(equalToConstant: 35),
                                      lockView.heightAnchor.constraint(equalToConstant: 35)]);
         return lockView
