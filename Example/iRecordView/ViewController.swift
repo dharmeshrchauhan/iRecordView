@@ -19,16 +19,22 @@ class ViewController: UIViewController,RecordViewDelegate {
     func onCancel() {
         stateLabel.text = "onCancel"
         print("onCancel")
+        sendButton.isHidden = true
+        recordButton.isHidden = false
     }
     
     func onLock() {
         stateLabel.text = "onLock"
         print("onLock")
+        recordButton.isHidden = true
+        sendButton.isHidden = false
     }
     
     func onFinished(duration: CGFloat) {
         stateLabel.text = "onFinished duration: \(duration)"
         print("onFinished \(duration)")
+        sendButton.isHidden = true
+        recordButton.isHidden = false
     }
     
     func onAnimationEnd() {
@@ -40,13 +46,14 @@ class ViewController: UIViewController,RecordViewDelegate {
     var recordButton:RecordButton!
     var recordView:RecordView!
     var stateLabel:UILabel!
+    var sendButton:UIButton!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         
-        let recordButton = RecordButton()
+        recordButton = RecordButton()
         recordButton.translatesAutoresizingMaskIntoConstraints = false
         
         let recordView = RecordView()
@@ -68,6 +75,25 @@ class ViewController: UIViewController,RecordViewDelegate {
         recordButton.recordView = recordView
 
         recordView.delegate = self
+        
+        sendButton = UIButton()
+        //sendButton.setTitle("✈", for: .normal)
+        view.addSubview(sendButton)
+        if #available(iOS 13.0, *) {
+            sendButton.setImage(UIImage(systemName: "paperplane.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 35))
+                                , for: .normal)
+        } else {
+            sendButton.setTitle("✈", for: .normal)
+        }
+        
+        sendButton.translatesAutoresizingMaskIntoConstraints = false
+        sendButton.widthAnchor.constraint(equalToConstant: 35).isActive = true
+        sendButton.heightAnchor.constraint(equalToConstant: 35).isActive = true
+
+        sendButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8).isActive = true
+        sendButton.bottomAnchor.constraint(equalTo: view.safeBottomAnchor, constant: -16).isActive = true
+        sendButton.isHidden = true
+
 
         
         stateLabel = UILabel()
