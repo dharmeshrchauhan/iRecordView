@@ -8,6 +8,12 @@
 
 import UIKit
 
+enum SwipeDirection {
+    case none
+    case up
+    case left
+}
+
 public class RecordView: UIView, CAAnimationDelegate {
 
     private var isSwiped = false
@@ -20,12 +26,13 @@ public class RecordView: UIView, CAAnimationDelegate {
     
     private var timerStackView: UIStackView!
     private var slideToCancelStackVIew: UIStackView!
+    private var direction = SwipeDirection.none;
 
     public weak var delegate: RecordViewDelegate?
     public var offset: CGFloat = 20
     public var isSoundEnabled = true
     public var buttonTransformScale: CGFloat = 2
-
+    
     public var slideToCancelText: String! {
         didSet {
             slideLabel.text = slideToCancelText
@@ -67,13 +74,12 @@ public class RecordView: UIView, CAAnimationDelegate {
     
     private let lock: UIImageView = {
         let lockView = UIImageView()
-        //lockView.image = UIImage.fromPod("mic_red")
         lockView.translatesAutoresizingMaskIntoConstraints = false
         lockView.tintColor = .blue
         lockView.image = UIImage.fromPod("lock")
-        //lockView.backgroundColor = UIColor.blue
         NSLayoutConstraint.activate([lockView.widthAnchor.constraint(equalToConstant: 35),
                                      lockView.heightAnchor.constraint(equalToConstant: 35)]);
+        lockView.isHidden = true;
         return lockView
     }()
 
@@ -170,6 +176,7 @@ public class RecordView: UIView, CAAnimationDelegate {
     }
 
     func onTouchUp(recordButton: RecordButton) {
+        direction = .none
         if cancelButton.isHidden {
             guard !isSwiped else {
                 return
@@ -340,39 +347,49 @@ public class RecordView: UIView, CAAnimationDelegate {
         case .changed:
 
             //prevent swiping the button outside the bounds
-            if translation.y < 0 {
-                //start move the views
-                let transform = mTransform.translatedBy(x: 0, y: translation.y * 2 )
-                button.transform = transform
-                
-                if cancelButton.isHidden && self.convert(lock.frame, to: button.superview).maxY - 18 > button.frame.minY {
-                    cancelButton.isHidden = false
-                    if cancelButton.superview == nil {
-                        superview!.addSubview(cancelButton)
-                        NSLayoutConstraint.activate([cancelButton.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: timerStackView.bounds.width / 2)
-                                                     ,cancelButton.centerYAnchor.constraint(equalTo: self.centerYAnchor)
-                        ]);
-                        
-                        superview?.bringSubviewToFront(cancelButton)
-                        cancelButton.addTarget(self, action: #selector(cancelButtonTouched), for: .touchUpInside)
+            if direction == .up || translation.y < 0 {
+                if direction != .left {
+                    //start move the views
+                    direction = .up
+                    if lock.isHidden {
+                        lock.isHidden = false
                     }
+                    let transform = mTransform.translatedBy(x: 0, y: translation.y * 2 )
+                    button.transform = transform
                     
-                    button.transform = .identity
-                    slideToCancelStackVIew.isHidden = true
-                    delegate?.onLock()
+                    if cancelButton.isHidden && self.convert(lock.frame, to: button.superview).maxY - 18 > button.frame.minY {
+                        cancelButton.isHidden = false
+                        if cancelButton.superview == nil {
+                            superview!.addSubview(cancelButton)
+                            NSLayoutConstraint.activate([cancelButton.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: timerStackView.bounds.width / 2)
+                                                         ,cancelButton.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+                            ]);
+                            
+                            superview?.bringSubviewToFront(cancelButton)
+                            cancelButton.addTarget(self, action: #selector(cancelButtonTouched), for: .touchUpInside)
+                        }
+                        
+                        button.transform = .identity
+                        slideToCancelStackVIew.isHidden = true
+                        lock.isHidden = true
+                        delegate?.onLock()
+                    }
                 }
             }
-            else if translation.x < -5 {
-                //start move the views
-                let transform = mTransform.translatedBy(x: translation.x, y: 0)
-                button.transform = transform
-                slideToCancelStackVIew.transform = transform.scaledBy(x: 0.5, y: 0.5)
+            
+            if direction == .left || translation.x < 0 {
+                if direction != .up {
+                    //start move the views
+                    direction = .left
+                    let transform = mTransform.translatedBy(x: translation.x, y: 0)
+                    button.transform = transform
+                    slideToCancelStackVIew.transform = transform.scaledBy(x: 0.5, y: 0.5)
 
 
-                if slideToCancelStackVIew.frame.intersects(timerStackView.frame.offsetBy(dx: offset, dy: 0)) {
-                    onSwipe(recordButton: recordButton)
+                    if slideToCancelStackVIew.frame.intersects(timerStackView.frame.offsetBy(dx: offset, dy: 0)) {
+                        onSwipe(recordButton: recordButton)
+                    }
                 }
-
             }
         default:
             break
